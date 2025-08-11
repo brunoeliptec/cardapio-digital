@@ -1,64 +1,172 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" >
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Minha Loja</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minha Loja - Cardápio com categorias e adicionais</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-    <header>
-        <h1>🍔 Minha Loja</h1>
-    </header>
+  <header>
+    <h1>🍔 Minha Loja</h1>
+  </header>
 
-    <main>
-        <section class="produtos" id="lista-produtos">
-            <!-- Produtos serão carregados pelo script.js -->
-        </section>
+  <main>
+    <nav class="categorias">
+      <button onclick="filtrarCategoria('Sanduíches')" class="ativo">Sanduíches</button>
+      <button onclick="filtrarCategoria('Lanches')">Lanches</button>
+      <button onclick="filtrarCategoria('Bebidas')">Bebidas</button>
+      <button onclick="filtrarCategoria('Pizzas')">Pizzas</button>
+    </nav>
 
-        <section class="carrinho">
-            <h2><i class="fas fa-shopping-cart"></i> Seu Carrinho</h2>
-            <ul id="pedido-lista"></ul>
-            <p><strong>Total:</strong> R$ <span id="total">0.00</span></p>
+    <section class="produtos" id="lista-produtos">
+      <!-- Produtos carregados aqui -->
+    </section>
 
-            <fieldset>
-                <legend>Forma de recebimento:</legend>
-                <label><input type="radio" name="tipoEntrega" value="retirada" checked onchange="toggleEndereco()" /> Retirar na loja</label>
-                <label><input type="radio" name="tipoEntrega" value="entrega" onchange="toggleEndereco()" /> Entrega</label>
-            </fieldset>
+    <section class="carrinho">
+      <h2><i class="fas fa-shopping-cart"></i> Seu Carrinho</h2>
+      <ul id="pedido-lista"></ul>
+      <p><strong>Total:</strong> R$ <span id="total">0.00</span></p>
 
-            <div id="formEndereco" style="display:none;">
-                <h3>Endereço para entrega:</h3>
-                <label>Nome completo:<br /><input type="text" id="nomeCliente" placeholder="Seu nome completo" /></label>
-                <label>Rua e Número:<br /><input type="text" id="ruaNumero" placeholder="Rua e número" /></label>
-                <label>Bairro:<br /><input type="text" id="bairro" placeholder="Bairro" /></label>
-                <label>Cidade:<br /><input type="text" id="cidade" placeholder="Cidade" /></label>
-                <label>CEP:<br /><input type="text" id="cep" placeholder="CEP" /></label>
-                <label>Telefone (opcional):<br /><input type="tel" id="telefone" placeholder="Telefone" /></label>
-            </div>
+      <fieldset>
+        <legend>Forma de recebimento:</legend>
+        <label
+          ><input
+            type="radio"
+            name="tipoEntrega"
+            value="retirada"
+            checked
+            onchange="toggleEndereco()"
+          />
+          Retirar na loja</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="tipoEntrega"
+            value="entrega"
+            onchange="toggleEndereco()"
+          />
+          Entrega</label
+        >
+      </fieldset>
 
-            <fieldset>
-                <legend>Forma de pagamento:</legend>
-                <label><input type="radio" name="formaPagamento" value="Dinheiro" checked onchange="toggleTroco()" /> Dinheiro</label>
-                <label><input type="radio" name="formaPagamento" value="Cartão Débito" onchange="toggleTroco()" /> Cartão Débito</label>
-                <label><input type="radio" name="formaPagamento" value="Cartão Crédito" onchange="toggleTroco()" /> Cartão Crédito</label>
-                <label><input type="radio" name="formaPagamento" value="PIX" onchange="toggleTroco()" /> PIX</label>
-            </fieldset>
+      <div id="formEndereco" style="display:none;">
+        <h3>Endereço para entrega:</h3>
+        <label
+          >Nome completo:<br /><input
+            type="text"
+            id="nomeCliente"
+            placeholder="Seu nome completo"
+        /></label>
+        <label
+          >Rua e Número:<br /><input
+            type="text"
+            id="ruaNumero"
+            placeholder="Rua e número"
+        /></label>
+        <label
+          >Bairro:<br /><input
+            type="text"
+            id="bairro"
+            placeholder="Bairro"
+        /></label>
+        <label
+          >Cidade:<br /><input
+            type="text"
+            id="cidade"
+            placeholder="Cidade"
+        /></label>
+        <label
+          >CEP:<br /><input
+            type="text"
+            id="cep"
+            placeholder="CEP"
+        /></label>
+        <label
+          >Telefone (opcional):<br /><input
+            type="tel"
+            id="telefone"
+            placeholder="Telefone"
+        /></label>
+      </div>
 
-            <div id="campoTroco" style="display: block; margin-bottom: 20px;">
-                <label>Precisa de troco? Informe o valor:<br />
-                    <input type="number" id="valorTroco" min="0" step="0.01" placeholder="Ex: 50.00" />
-                </label>
-            </div>
+      <fieldset>
+        <legend>Forma de pagamento:</legend>
+        <label
+          ><input
+            type="radio"
+            name="formaPagamento"
+            value="Dinheiro"
+            checked
+            onchange="toggleTroco()"
+          />
+          Dinheiro</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="formaPagamento"
+            value="Cartão Débito"
+            onchange="toggleTroco()"
+          />
+          Cartão Débito</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="formaPagamento"
+            value="Cartão Crédito"
+            onchange="toggleTroco()"
+          />
+          Cartão Crédito</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="formaPagamento"
+            value="PIX"
+            onchange="toggleTroco()"
+          />
+          PIX</label
+        >
+      </fieldset>
 
-            <button class="whatsapp" onclick="enviarWhatsApp()">
-                <i class="fab fa-whatsapp"></i> Finalizar Pedido
-            </button>
-        </section>
-    </main>
+      <div id="campoTroco" style="display: block; margin-bottom: 20px;">
+        <label
+          >Precisa de troco? Informe o valor:<br /><input
+            type="number"
+            id="valorTroco"
+            min="0"
+            step="0.01"
+            placeholder="Ex: 50.00"
+        /></label>
+      </div>
 
-    <script src="script.js"></script>
+      <button class="whatsapp" onclick="enviarWhatsApp()">
+        <i class="fab fa-whatsapp"></i> Finalizar Pedido
+      </button>
+    </section>
+  </main>
+
+  <!-- Modal para adicionais -->
+  <div id="modalAdicionais" class="modal">
+    <div class="modal-content">
+      <h3>Escolha os adicionais</h3>
+      <div id="lista-adicionais"></div>
+      <button onclick="fecharModal()">Cancelar</button>
+      <button onclick="confirmarAdicionais()">Adicionar ao carrinho</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
